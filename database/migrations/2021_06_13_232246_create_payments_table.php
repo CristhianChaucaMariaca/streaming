@@ -20,9 +20,9 @@ class CreatePaymentsTable extends Migration
             $table->foreignId('group_id')->constrained('groups')->nullable();
 
             $table->enum('status',['VERIFIED','PENDING'])->default('PENDING');
-            $table->tinyInteger('fee'); //FIXME: numero de cuota mensual
+            $table->tinyInteger('fee');
             $table->double('pay',4,1);
-            $table->year('year'); //FIXME: Pendiente para migración
+            $table->year('year');
 
             $table->timestamps();
         });

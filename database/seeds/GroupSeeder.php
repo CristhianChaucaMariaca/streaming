@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Group;
+
 class GroupSeeder extends Seeder
 {
     /**
@@ -11,6 +13,15 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Group::create([
+            'name' => 'Ergueta',
+            'status' => 'enable',
+            'payday' => 13,
+        ]);
+        Group::create([
+            'name' => 'Montes',
+            'status' => 'enable',
+            'payday' => 20,
+        ]);
     }
 }

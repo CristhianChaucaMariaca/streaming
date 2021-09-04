@@ -126,4 +126,17 @@ class GroupController extends Controller
         $group->save();
         return redirect()->route('group-show',$group)->with('info',"Servicio $group->name quitado correctamente del grupo.");
     }
+
+
+    public function userAttachGroup($id)
+    {
+        auth()->user()->groups()->attach($id);
+        return redirect()->route('home',)->with('info',"Se unio correctamente al grupo.");
+    }
+
+    public function joinGroup()
+    {
+        $groups = Group::orderBy('name','DESC')->get();
+        return view('web.user.joinGroup',compact('groups'));
+    }
 }

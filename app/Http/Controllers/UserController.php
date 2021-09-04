@@ -95,16 +95,8 @@ class UserController extends Controller
         return redirect()->route('users')->with('info',"Usuario $user->name fue eliminado");
     }
 
-    public function joinGroup(User $user)
-    {
-        $groups = Group::orderBy('name','DESC')->get();
-        return view('admin.user.joinGroup',compact('user','groups'));
-    }
-    public function userAttachGroup(User $user, $id)
-    {
-        $user->groups()->attach($id);
-        return redirect()->route('user-show',$user)->with('info',"Se unio correctamente al grupo.");
-    }
+
+
 
     public function userDetachGroup(User $user, $id)
     {

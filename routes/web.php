@@ -23,8 +23,8 @@ Route::post('/crear-usuario','UserController@store')->name('user-store');
 Route::get('/editar-usuario/{id}','UserController@edit')->name('user-edit');
 Route::put('/actualizar-usuario/{id}','UserController@update')->name('user-update');
 Route::delete('/eliminar-usuario/{id}','UserController@destroy')->name('user-destroy');
-Route::get('/unir-grupo/{user}','UserController@joinGroup')->name('user-join-group');
-Route::get('/unir-usuario-a-grupo/{user}/{id}','UserController@userAttachGroup')->name('user-attach-group');
+
+
 Route::get('/quitar-usuario-de-grupo/{user}/{id}','UserController@userDetachGroup')->name('user-detach-group');
 
 
@@ -41,9 +41,12 @@ Route::prefix('grupo')->group(function(){
     Route::get('/agregar-servicio/{group}','GroupController@add_service')->name('service-add');
     Route::get('/quitar-servicio/{group}/{id}','GroupController@removeService')->name('remove-service');
 
+    Route::get('/unir-usuario-a-grupo/{id}','GroupController@userAttachGroup')->name('user-attach-group');
+    Route::get('/unir-grupo','GroupController@joinGroup')->name('user-join-group');
+
 });
 
-Route::get('/servicios', 'ServiceController@index')->name('services');
+Route::get('/servicios', 'ServiceController@index')->name('services')->middleware('verified');
 Route::post('/crear-servicio', 'ServiceController@store')->name('service-store');
 Route::get('/nuevo-servicio','ServiceController@create')->name('service-create');
 Route::get('/servicio/{service}','ServiceController@show')->name('service-show');
@@ -55,3 +58,14 @@ Route::delete('eliminar-servicio/{service}','ServiceController@destroy')->name('
 Route::get('/realizar-pago/{user}/group/{group}','PaymentController@create')->name('payment-create');
 Route::post('/guardar-pago/{user}/group/{group}','PaymentController@store')->name('payment-store');
 Route::get('/pagos-usuario/{user}/{group}','PaymentController@showUserPayments')->name('show-user-payments');
+
+
+
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
