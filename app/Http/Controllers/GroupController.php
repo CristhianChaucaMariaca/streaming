@@ -54,6 +54,7 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
+
         $carbon = new Carbon();
         return view('admin.groups.show',compact('group','carbon'));
     }

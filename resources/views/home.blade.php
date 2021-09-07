@@ -28,7 +28,7 @@
 
                             </div>
                             <div class="card-footer">
-                                <x-button type="secondary" title="Detalles del grupo" :route="route('group-show',$group)" icon="visibility" class="float-md-end"/>
+                                <a href="{{route('group-show',$group)}}">Ver detalles del grupo</a>
                             </div>
                         </div>
                     @empty

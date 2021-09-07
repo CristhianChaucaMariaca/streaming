@@ -11,23 +11,12 @@
                         <p class="card-text">
                             <strong>Monto: </strong>
                             @if (is_null($group->amount))
-                                <span>Sin servicio</span>
+                                <span>Sin monto asignado</span>
                             @else
                                 <span>
                                 {{$group->amount}}
                             </span>
                             @endif
-                        </p>
-                        <p class="card-text">
-                            <strong>Estado: </strong>
-                            @if ($group->status == "enable")
-                                Habilitado
-                            @else
-                                Deshabilitado
-                            @endif
-                        </p>
-                        <p>
-                            <strong>Activo desde:</strong> {{$carbon->now()->diffForHumans($group->created_at)}}
                         </p>
                         <p>
                             <strong>dia de pago:</strong>
@@ -45,42 +34,41 @@
                             </span>
                             @endif
                         </p>
-                        <p>
-                            <strong>cantidad de personas</strong>
-                            {{$group->members}}
-                        </p>
                     </div>
-                    <div class="card-header">
-                        <h4 class="card-title">
-                            Lista de integrantes
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-hover">
-                            <tbody>
-                            @forelse ($group->users as $user)
-                                <tr>
-                                    <td>
-                                        {{$user->name}}
-                                    </td>
-                                    <td width="1">
-                                        <x-button :route="route('show-user-payments',[$user,$group])" title="Ver pagos" icon="payments" type="success" />
-                                    </td>
-                                    <td width="1">
-                                        <x-button :route="route('payment-create',[$user,$group])" title="Realizar pago" icon="payment" type="dark"/>
-                                    </td>
-                                </tr>
-                            @empty
-                                <x-simpleAlert type="secondary">
-                                    Este grupo <strong>no cuenta con usuarios</strong> en su lista.
-                                </x-simpleAlert>
-                            @endforelse
-                            </tbody>
-                        </table>
-                    </div>
+
+                    @role('administrator')
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Lista de integrantes
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <tbody>
+                                @forelse ($group->users as $user)
+                                    <tr>
+                                        <td>
+                                            {{$user->name}}
+                                        </td>
+                                        <td width="1">
+                                            <x-button :route="route('show-user-payments',[$user,$group])" title="Ver pagos" icon="payments" type="success" />
+                                        </td>
+                                        <td width="1">
+                                            <x-button :route="route('payment-create',[$user,$group])" title="Realizar pago" icon="payment" type="dark"/>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <x-simpleAlert type="secondary">
+                                        Este grupo <strong>no cuenta con usuarios</strong> en su lista.
+                                    </x-simpleAlert>
+                                @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    @endrole
                     <div class="card-header">
                         <h4 class="cart-title">
-                            Lista de servicios
+                            Servicios del grupo
                         </h4>
                     </div>
                     <div class="card-body">
@@ -97,7 +85,9 @@
                                 <tr>
                                     <td>{{ $service->id }}</td>
                                     <td>{{ $service->name }}</td>
-                                    <td width="1"><a href="{{ route('remove-service',[$group,$service->id]) }}" class="btn btn-danger"><span class="material-icons">delete</span></a></td>
+                                    @can('dettach.service.from.group')
+                                        <td><a href="{{ route('remove-service',[$group,$service->id]) }}" class="">Eliminar servicio del grupo</a></td>
+                                    @endcan
                                 </tr>
                             @empty
                                 <x-simpleAlert type="secondary">
@@ -107,21 +97,39 @@
                             </tbody>
                         </table>
                     </div>
-                    @role('Administrator')
-                        <div class="card-footer d-flex justify-content-between">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-subtitle">Acciones</h4>
+                    </div>
+                    <div class="card-body d-flex flex-md-column">
+                        @can('edit.group')
+                            <a href="{{route('group-edit',$group)}}" title="Editar grupo" class="mb-2">Editar grupo</a>
+                        @endcan
 
-                            <x-button :route="route('group-edit',$group)" title="Editar el Grupo" icon="edit" type="secondary"/>
+                        @can('add.service.to.group')
+                            <a href="{{ route('group-new-service',$group) }}" class="mb-2">Añadir servicio</a>
+                        @endcan
 
+                        @can('leave.group')
+                            <a href="{{ route('group-new-service',$group) }}" class="mb-2">Dejar grupo</a>
+                        @endcan
+
+                        {{-- TODO: Trabajar en estos enlaces y vistas para detallar --}}
+                        <a href="#" class="mb-2">Ver detalle de pagos</a>
+                        <a href="#" class="mb-2">Ver detalles del grupo</a>
+                        @can('delete.group')
                             <form action="{{ route('group-destroy',$group) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <button class="btn btn-danger" title="Elimiar Grupo">
-                                    <span class="material-icons">delete</span>
+                                <button class="btn btn-danger mb-2" title="Elimiar Grupo">
+                                    Eliminar Grupo
                                 </button>
                             </form>
-                            <a href="{{ route('group-new-service',$group) }}" class="btn btn-secondary">Añadir servicio</a>
-                        </div>
-                    @endrole
+                        @endcan
+                    </div>
                 </div>
             </div>
         </div>

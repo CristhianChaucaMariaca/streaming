@@ -17,11 +17,13 @@ class GroupSeeder extends Seeder
             'name' => 'Ergueta',
             'status' => 'enable',
             'payday' => 13,
+            'members' =>5
         ]);
         Group::create([
             'name' => 'Montes',
             'status' => 'enable',
             'payday' => 20,
+            'members' => 4
         ]);
     }
 }

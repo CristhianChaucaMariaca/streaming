@@ -19,7 +19,7 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::orderBy('id','asc')->get();
-        return view('admin.service.index',compact('services'));
+        return view('web.user.services',compact('services'));
     }
 
     /**
