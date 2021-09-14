@@ -41,7 +41,7 @@ class User extends Authenticatable // implements MustVerifyEmail //Debo ver cual
     ];
 
     public function groups(){
-        return $this->belongsToMany(Group::class);
+        return $this->hasMany(Group::class);
     }
 
     public function payments()

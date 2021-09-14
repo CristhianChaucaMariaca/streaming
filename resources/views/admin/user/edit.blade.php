@@ -17,6 +17,10 @@
                                 <label for="name">Nombre</label>
                                 <input type="text" class="form-control" name="name" id="name" value="{{$user->name}}">
                             </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" id="email" value="{{$user->email}}">
+                            </div>
                         </div>
                         <div class="card-footer">
                             <input type="submit" value="Guardar" id="name" class="btn btn-primary">

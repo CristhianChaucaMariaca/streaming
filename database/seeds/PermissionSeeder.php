@@ -26,6 +26,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'create.user']);
 
         //create Permissions Group
+        Permission::create(['name' => 'create.group']);
         Permission::create(['name' => 'show.groups']);
         Permission::create(['name' => 'delete.group']);
         Permission::create(['name' => 'edit.group']);
@@ -47,6 +48,7 @@ class PermissionSeeder extends Seeder
         $role = Role::create(['name' => 'Super-Admin']);
 
         $role1 = Role::create(['name' => 'administrator']);
+        $role1->givePermissionTo('create.group');
         $role1->givePermissionTo('show.groups');
         $role1->givePermissionTo('delete.group');
         $role1->givePermissionTo('edit.group');

@@ -8,6 +8,8 @@ use App\Group;
 use Carbon\Carbon;
 use App\Payment;
 
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     /**
@@ -39,7 +41,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
         return redirect()->route('user-edit',$user->id)->with('info',"Usuario $user->name añadido correctamente.");
     }
 

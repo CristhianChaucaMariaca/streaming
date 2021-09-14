@@ -36,7 +36,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @auth
-                            <li><a href="{{route('users')}}" class="nav-link">Usuarios</a></li>
+                            @can('show.users')
+                                <li><a href="{{route('users')}}" class="nav-link">Usuarios</a></li>
+                            @endcan
                             @can('show.groups')
                                 <li><a href="{{route('groups')}}" class="nav-link">Grupos</a></li>
                             @endcan
@@ -108,7 +110,41 @@
                     </div>
                 </div>
             @endif
-            @yield('content')
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        @yield('content')
+                    </div>
+                    @auth
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Acciones</h4>
+                                </div>
+                                <div class="card-body">
+                                    <strong>Grupos</strong><br>
+                                    <ul>
+                                        @can('create.group')
+                                            <li>
+                                                <a href="{{route('group-create')}}" title="Añadir un nuevo grupo">Añadir un <strong>nuevo grupo</strong></a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                    <strong>Usuarios</strong>
+                                    <ul>
+                                        @can('create.user')
+                                            <li>
+                                                <a href="{{route('create-user')}}" title="Añade un nuevo usuario">Crear un usuario</a>
+                                            </li>
+                                        @endcan
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    @endauth
+
+                </div>
+            </div>
         </main>
     </div>
 </body>

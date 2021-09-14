@@ -16,8 +16,8 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = Group::orderBy('id','ASC')->get();
-        return view('admin.groups.index',compact('groups'));
+        // $groups = Group::orderBy('id','ASC')->where('user_id',auth()->user()->id)->get();
+        return view('admin.groups.index');
     }
 
     /**

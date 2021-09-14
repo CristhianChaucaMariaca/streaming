@@ -10,8 +10,8 @@ class Group extends Model
         'name','status','amount','payday','quota','members'
     ];
 
-    public function users(){
-        return $this->belongsToMany(User::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     public function services(){

@@ -15,11 +15,12 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrainded('users');
             $table->string('name');
             $table->enum('status',['enable','disable']);
             $table->double('amount',5,1)->nullable();
             $table->tinyInteger('payday')->nullable();
-            $table->double('quota')->nullable();
+            $table->double('quota',5,1)->nullable();
             $table->tinyInteger('members')->nullable();
             $table->timestamps();
         });

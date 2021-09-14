@@ -29,6 +29,21 @@ class ServiceSeeder extends Seeder
                     'name'          =>  "Disney Plus",
                     'description'   =>  "Las mejores peliculas de la franquicia de Disney para disfrutar con los pequeños de la familia.",
                     'price'         =>  41
+                ],
+                [
+                    'name'          =>  "Star Plus",
+                    'description'   =>  "Streaming con peliculas de warner.",
+                    'price'         =>  71,
+                ],
+                [
+                    'name'          =>  "Paramount",
+                    'description'   => "Todas la peliculas de paramount",
+                    'price'         => 40
+                ],
+                [
+                    'name'          =>  "HBO Max",
+                    'description'   =>  "El mejor contenido de HBO premium",
+                    'price'         => 40
                 ]
             ]
 
