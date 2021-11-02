@@ -41,7 +41,15 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'create.service']);
         Permission::create(['name' => 'delete.service']);
 
-        //create Permissions Payments
+        //create Permissions Suscribes
+        Permission::create(['name' => 'show.suscriptions']);
+        Permission::create(['name' => 'approved.suscription']);
+        Permission::create(['name' => 'rejected.suscription']);
+        Permission::create(['name' => 'show.suscription']);
+        Permission::create(['name' => 'edit.suscription']);
+        Permission::create(['name' => 'create.suscription']);
+        Permission::create(['name' => 'delete.suscription']);
+
 
 
         //create roles and assign existing permissions
@@ -54,6 +62,8 @@ class PermissionSeeder extends Seeder
         $role1->givePermissionTo('edit.group');
         $role1->givePermissionTo('dettach.service.from.group');
         $role1->givePermissionTo('add.service.to.group');
+
+        $role1->givePermissionTo('show.suscriptions');
 
 
         $role2 = Role::create(['name' => 'User']);

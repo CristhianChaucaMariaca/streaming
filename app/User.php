@@ -48,4 +48,8 @@ class User extends Authenticatable // implements MustVerifyEmail //Debo ver cual
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function suscriptions(){
+        return $this->hasMany(Suscription::class);
+    }
 }

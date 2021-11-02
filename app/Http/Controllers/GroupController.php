@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\Service;
 use Carbon\Carbon;
+use App\Suscription;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -54,7 +55,6 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-
         $carbon = new Carbon();
         return view('admin.groups.show',compact('group','carbon'));
     }

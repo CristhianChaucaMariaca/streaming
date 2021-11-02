@@ -17,6 +17,7 @@ class CreateGroupServiceTable extends Migration
             $table->id();
             $table->foreignId('service_id')->constrained('services')->unique();
             $table->foreignId('group_id')->constrained('groups');
+
             $table->timestamps();
         });
     }

@@ -129,6 +129,7 @@
                                                 <a href="{{route('group-create')}}" title="Añadir un nuevo grupo">Añadir un <strong>nuevo grupo</strong></a>
                                             </li>
                                         @endcan
+                                        @yield('group-actions')
                                     </ul>
                                     <strong>Usuarios</strong>
                                     <ul>

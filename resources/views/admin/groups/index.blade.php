@@ -13,6 +13,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Monto</th>
                 <th scope="col">Status</th>
+                <th scope="col">Solicitudes</th>
                 <th scope="col" colspan="3" class="table-active text-center">Acciones</th>
             </tr>
             </thead>
@@ -35,6 +36,9 @@
                         @else
                             Deshabilitado
                         @endif
+                    </td>
+                    <td>
+                        <a href="{{route('applications', $group)}}">Ver solicitudes</a>
                     </td>
                     <td width="1" class="table-active">
                         <x-button :route="route('group-show',$group)" type="secondary" icon="visibility" title="Ver detalles del grupo" />

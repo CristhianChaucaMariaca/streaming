@@ -21,4 +21,8 @@ class Group extends Model
     public function payments(){
         return $this->hasMany(Payment::class);
     }
+
+    public function suscriptors(){
+        return $this->hasMany(Suscription::class);
+    }
 }

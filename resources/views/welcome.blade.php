@@ -81,14 +81,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Streaming
                 </div>
 
-                <div class="links">
-                    <a href="{{route('users')}}">Usuarios</a>
-                    <a href="{{route('groups')}}">Grupos</a>
-                    <a href="{{route('services')}}">Servicios</a>
-                </div>
             </div>
         </div>
     </body>

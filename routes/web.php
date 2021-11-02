@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,9 +38,6 @@ Route::prefix('grupo')->group(function(){
     Route::put('/actualizar-grupo/{group}','GroupController@update')->name('group-update');
     Route::get('/editar-grupo/{group}','GroupController@edit')->name('group-edit');
     Route::delete('/eliminar-grupo/{group}','GroupController@destroy')->name('group-destroy');
-    Route::get('/agregar-servicio-a-grupo/{group}','GroupController@new_service')->name('group-new-service');
-    Route::get('/agregar-servicio/{group}','GroupController@add_service')->name('service-add');
-    Route::get('/quitar-servicio/{group}/{id}','GroupController@removeService')->name('remove-service');
 
     Route::get('/unir-usuario-a-grupo/{id}','GroupController@userAttachGroup')->name('user-attach-group');
     Route::get('/unir-grupo','GroupController@joinGroup')->name('user-join-group');
@@ -61,6 +59,8 @@ Route::get('/pagos-usuario/{user}/{group}','PaymentController@showUserPayments')
 
 
 
+
+
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -69,3 +69,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::get('/sucribirme/{id}', 'SuscriptionController@suscribe')->name('suscribe');
+Route::get('/solicitudes/{group}', 'SuscriptionController@applications')->name('applications');
+Route::get('/aprobar-solicitud/{id}', 'SuscriptionController@approved')->name('approved');
+Route::get('/denegar-solicitud/{id}','SuscriptionController@rejected')->name('rejected');
+Route::resource('/suscription', SuscriptionController::class);

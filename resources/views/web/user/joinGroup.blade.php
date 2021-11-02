@@ -22,7 +22,10 @@
                                                 Aquí deberia ir algunos detalles del grupo
                                             </p>
                                         </div>
-                                        <div class="card-footer"><a href="{{route('user-attach-group',$group->id)}}" class="" title="Unir al grupo">Solicitar union</a></div>
+                                        <div class="card-footer">
+                                            <a href="{{route('suscribe',$group->id)}}" class="" title="Unir al grupo">Solicitar union</a>
+                                            <a href="{{route('group-show', $group)}}">Ver detalles del grupo</a>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -32,4 +35,34 @@
             </div>
         </div>
     </div>
+@endsection
+@section('group-actions')
+
+@can('edit.group')
+	<li>
+		<a href="{{route('group-edit',$group)}}" title="Editar grupo" class="mb-2">Editar grupo</a>
+	</li>
+@endcan
+@can('add.service.to.group')
+	<li>
+		<a href="{{ route('group-new-service',$group) }}" class="mb-2">Añadir servicio</a>
+	</li>
+@endcan
+@can('leave.group')
+	<li>
+		<a href="{{ route('group-new-service',$group) }}" class="mb-2">Dejar grupo</a>
+	</li>
+@endcan
+@can('delete.group')
+	<li>
+		<form action="{{ route('group-destroy',$group) }}" method="post">
+				@csrf
+				@method('delete')
+				<button class="btn btn-danger mb-2" title="Elimiar Grupo">
+					Eliminar Grupo
+				</button>
+		</form>
+	</li>
+@endcan
+	 
 @endsection
