@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('user-join-group'); 
 });
 Route::get('/usuarios','UserController@index')->name('users');
 Route::get('/nuevo-usuario','UserController@create')->name('create-user');
@@ -62,10 +62,6 @@ Route::get('/pagos-usuario/{user}/{group}','PaymentController@showUserPayments')
 
 
 Auth::routes(['verify'=>true]);
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 

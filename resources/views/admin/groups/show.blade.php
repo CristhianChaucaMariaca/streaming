@@ -50,11 +50,13 @@
                             {{$group->members}}
                         </p>
                     </div>
-                    <div class="card-header">
-                        <h4 class="card-title">
-                            Lista de integrantes
-                        </h4>
-                    </div>
+                    @hasanyrole('administrator|Super-Admin') 
+                        <div class="card-header">
+                            <h4 class="card-title">
+                                Lista de integrantes
+                            </h4>
+                        </div>
+                    @endrole
                     <div class="card-body">
                         <table class="table table-hover">
                             <tbody>
