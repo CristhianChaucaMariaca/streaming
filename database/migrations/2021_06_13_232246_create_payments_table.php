@@ -23,6 +23,7 @@ class CreatePaymentsTable extends Migration
             $table->tinyInteger('fee');
             $table->double('pay',4,1);
             $table->year('year');
+            $table->integer('voucher');
 
             $table->timestamps();
         });
